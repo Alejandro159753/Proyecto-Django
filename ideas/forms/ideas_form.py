@@ -1,40 +1,62 @@
 from django import forms
-from ideas.models import Ideas
+import requests
 
-class IdeasForm(forms.ModelForm):
-    class Meta:
-        model = Ideas
-        fields = [
-            'title',
-            'description',
-            'key_words',
-            'resources',
-            'created_at',
-            'innovation_type',
-            'innovation_focus',
-            'file',
-        ]
+# Función que hace la consulta a la API y obtiene los datos
+def obtener_focos_innovacion():
+    response = requests.get("http://190.217.58.246:5186/api/sgv/foco_innovacion")
+    return [(foco['id_foco_innovacion'], foco['name']) for foco in response.json()]
 
-        widgets = {
-            'description': forms.Textarea(attrs={'rows': 4}),
-            'created_at': forms.DateInput(format='%d/%m/%Y', attrs={
-                'class': 'form-control',
-                'placeholder': 'Selecciona una fecha',
-                'type': 'date'
-            }),
-        }
+def obtener_tipos_innovacion():
+    response = requests.get("http://190.217.58.246:5186/api/sgv/tipo_innovacion")
+    return [(tipo['id_tipo_innovacion'], tipo['name']) for tipo in response.json()]
+
+class IdeasForm(forms.Form):
+    titulo = forms.CharField(
+        max_length=255,
+        required=True,
+        label='Título',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el título de la idea'})
+    )
+    descripcion = forms.CharField(
+        required=True,
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Proporcione una descripción detallada de la idea'}),
+        label='Descripción'
+    )
+    recursos_requeridos = forms.IntegerField(
+        required=True,
+        label='Recursos Requeridos',
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cantidad de recursos necesarios'})
+    )
+    palabras_claves = forms.CharField(
+        max_length=255,
+        required=True,
+        label='Palabras Claves',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Palabras clave relacionadas con la idea'})
+    )
+    fecha_creacion = forms.DateField(
+        required=True,
+        widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        label='Fecha de Creación'
+    )
+    archivo_multimedia = forms.FileField(
+        required=False,
+        label='Archivos Multimedia',
+        widget=forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'Sube un archivo multimedia'})
+    )
+
+    # Usando ChoiceField con los datos de la API
+    id_foco_innovacion = forms.ChoiceField(
+        choices=[(foco[0], foco[1]) for foco in obtener_focos_innovacion()],
+        required=True,
+        label='Foco de Innovación',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    id_tipo_innovacion = forms.ChoiceField(
+        choices=[(tipo[0], tipo[1]) for tipo in obtener_tipos_innovacion()],
+        required=True,
+        label='Tipo de Innovación',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
 
 
-        
-        labels = {
-            'created_at' : 'Fecha',
-            # 'created_by' : 'Responsable',
-            'title': 'Título',
-            'description': 'Descripción',
-            'key_words': 'Palabras clave',
-            'resources': 'Recursos requeridos',
-            'innovation_type': 'Tipo de innovación',
-            'innovation_focus': 'Foco de innovación',
-            'file': 'Archivo'
-            
-        }
+

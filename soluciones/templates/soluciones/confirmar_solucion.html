@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="page-title-box">
+            <h4>Soluciones</h4>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Confirmar Actualización de Solución</h4>
+
+                {% if not request.POST.confirmar %}
+                    <p>¿Está seguro de que desea confirmar esta solución?</p>
+                    <p>
+                        Solución: <b>{{ solucion.titulo }}</b>
+                    </p>
+
+                    
+
+                    <div class="form-group mb-0">
+                        <div>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <button type="submit" name="confirmar" class="btn btn-success float-right">Confirmar</button>
+                                <a href="{% url 'soluciones:list_soluciones' %}" class="btn btn-light">Regresar</a>
+                            </form>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <p>
+                        {% if mensaje_experto %}
+                            Mensaje del experto: <strong>{{ mensaje_experto }}</strong>
+                        {% else %}
+                            ¡Solución confirmada exitosamente!
+                        {% endif %}
+                    </p>
+                    <a href="{% url 'soluciones:list_soluciones' %}" class="btn btn-primary">Regresar a la lista</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

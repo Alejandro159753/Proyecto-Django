@@ -16,8 +16,12 @@ SECRET_KEY = 'django-insecure-#1!vjo3l)hf!zh+kzob43t2-f)ssp9z3k-b2@j(@&w9+@6l21@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOGIN_URL = '/login/login/'  # Asegúrate de que esta sea la URL correcta de tu página de inicio de sesión
+
+
 ALLOWED_HOSTS = []
 
+# AUTH_USER_MODEL = 'login.Usuario'
 
 # Application definition
 
@@ -30,10 +34,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap4',
+    'login',
     'authentication',
+    'soluciones',
     'ideas',
     'oportunidades',
     'perfil',
+    'innovacion',
     
     
 ]
@@ -47,6 +54,22 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# settings.py
+
+# settings.py
+
+# AUTHENTICATION_BACKENDS = [
+#     'login.backends.CustomAuthBackend',   # Solo backend para autenticación con API externa
+# ]
+
+AUTHENTICATION_BACKENDS = [
+    'login.backends.CustomAuthBackend',  # Asegúrate de que el path sea correcto
+    'django.contrib.auth.backends.ModelBackend',  # Para permitir la autenticación tradicional si es necesario
+]
+
+# settings.py
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 
 ROOT_URLCONF = 'innovacion.urls'
 
@@ -75,11 +98,12 @@ WSGI_APPLICATION = 'innovacion.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'innovacion',
+        'NAME': 'bd1',
         'USER': 'postgres',
         'PASSWORD': 'Alejandro2.0',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
+        
     }
 }
 
@@ -102,6 +126,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',  # Este es el que se usa por defecto
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -119,6 +150,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
@@ -129,3 +162,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+API_URL = "http://190.217.58.246:5186/api/SGV/procedures/execute"
+#API_URL = "http://190.217.58.246:5186/api/SGV"
+
+
+#AUTH_USER_MODEL = 'login.Usuario'  # Reemplaza 'tu_app' con el nombre de tu aplicación

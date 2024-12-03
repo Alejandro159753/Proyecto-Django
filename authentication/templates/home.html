@@ -1,64 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innovación</title>
-    {% load static %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: url("{% static 'img/fondo.jfif' %}") no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Arial', sans-serif;
-        }
-        .container {
-            text-align: center;
-            color: black;
-            max-width: 700px;
-        }
-        .container img {
-            max-width: 300px;
-            margin-bottom: 30px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        p {
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
-        .btn-ingresar {
-            background-color: black;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.25rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        .btn-ingresar:hover {
-            background-color: #0030a2;
-        }
-    </style>
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
 </head>
 <body>
-    <div class="container">
-        <img src="{% static 'img/logo-usb-vertical.png' %}" alt="Logo">
+    <div class="background"></div>
+    <!-- Imagen al frente -->
+    <img src="{% static 'img/MALLA2.png' %}" alt="Imagen al frente" class="foreground-image">
+    <div class="background"></div>
+    <div class="content">
+        <img src="{% static 'img/logo-home.png' %}" alt="Logo">
         <h1>Sistema de Innovación</h1>
         <p>Área donde los estudiantes, líderes, colaboradores y administrativos realizamos actividades para el crecimiento de todos.</p>
-        <a href="{% url 'authentication:app'%}" class="btn btn-ingresar">Ingresar</a>
+        <a href="{% url 'login:login' %}" class="btn">Ingresar</a>
     </div>
 </body>
 </html>

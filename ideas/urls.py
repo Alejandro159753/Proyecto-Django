@@ -1,18 +1,15 @@
 from django.urls import path
-from .views.ideas import base
-from .views import (
-    ideas
-)
+# from .views.ideas import base
+from .views.ideas import list_ideas, create_idea, update_idea, delete_idea, detail_idea,confirmar_idea
 
 app_name = 'ideas'
 
 urlpatterns = [
-    
-    path('base/', base, name='base'),
-    
-    path('ideas/list/', ideas.IdeaListView. as_view(), name='list'),
-    path('ideas/create/', ideas.IdeaCreateView.as_view(), name='create'),
-    path('ideas/<int:pk>/update/', ideas.IdeaUpdateView.as_view(), name='ideas_update'),
-    path('ideas/<int:pk>/delete/', ideas.IdeaDeleteView.as_view(), name='ideas_delete'),
-    path('ideas/<int:pk>/detail', ideas.IdeaDetailView.as_view(), name='ideas_detail'),
+
+    path('list/', list_ideas, name='list'),
+    path('create/', create_idea, name='create'),
+    path('update/<pk>/', update_idea, name='update'),
+    path('delete/<pk>/', delete_idea, name='delete'),
+    path('detail/<int:codigo_idea>/', detail_idea, name='detail'),
+    path('idea/confirmar/<int:codigo_idea>/', confirmar_idea, name='confirmar_idea'),
 ]

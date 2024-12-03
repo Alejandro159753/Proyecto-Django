@@ -1,8 +1,12 @@
-from django.urls import path
-from .views.perfil import mostrar_perfil
+# perfil/urls.py
 
-app_name = 'perfil'  # Añade esta línea
+from django.urls import path
+from .views.perfil import mostrar_perfil  # Cambia esto si el archivo tiene otro nombre o ubicación
+from .views.perfil import editar_perfil
+
+app_name = 'perfil'
 
 urlpatterns = [
-    path('mi-perfil/', mostrar_perfil, name='mi_perfil'),
+    path('', mostrar_perfil, name='mi_perfil'),
+    path('editar/', editar_perfil, name='editar_perfil'),
 ]

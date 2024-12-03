@@ -17,6 +17,27 @@ File: Main Css File
   -webkit-box-shadow: 0 -3px 31px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.02);
           box-shadow: 0 -3px 31px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.02); }
 
+.dashboard-item {
+    background-color: #FFE5B4 !important; /* Color de fondo */
+    border: none; /* Sin borde */
+}
+
+.dashboard-item a {
+    color: black !important; /* Color negro */
+}
+
+
+
+.noti-unread {
+  background-color: #d3d3d3;
+}
+
+.noti-read {
+  background-color: transparent;
+}
+
+
+
 .navbar-header {
   display: -webkit-box;
   display: -ms-flexbox;

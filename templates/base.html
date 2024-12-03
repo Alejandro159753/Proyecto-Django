@@ -15,8 +15,8 @@
     <!-- App Css -->
     <link href="{% static 'css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
 
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
-
+    <link rel="shortcut icon" href="{% static 'img/icono.ico' %}">
+    <link href="{% static 'styles/logo.css' %}" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -28,7 +28,7 @@
     
             <header id="page-topbar">
                 <div class="navbar-header">
-                    <div class="d-flex">
+                    <div class="d-flex"
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
                             <a href="{% url 'authentication:app'%}" class="logo logo-dark">
@@ -38,55 +38,43 @@
                                 </span>
                                 <!-- Icono y texto para cuando el menú está abierto -->
                                 <span class="logo-lg">
-                                    <i class="fas fa-lightbulb main-icon-without-slide icon-png-container pd-lv4" style="font-size: 30px;"></i>
-                                    <span style="font-size: 25px; margin-left: 10px; color: #ffffff;">INVC</span>
+                                    <img src="{% static 'img/MALLA.png' %}" alt="Icono personalizado" style="width: 50px; height: 50px;">
+                                    <span style="font-size: 2px; margin-left: 10px; top: 50%; color: #ffffff;">INNOVACIÓN</span>
                                 </span>
                             </a>
                         
-                            <a href="{% url 'authentication:app'%}" class="logo logo-light">
-                                <!-- Icono para cuando el menú está cerrado -->
+                            <a href="{% url 'authentication:app' %}" class="logo logo-light">
+                                <!-- Para cuando el menú está cerrado -->
                                 <span class="logo-sm">
-                                    <i class="fas fa-lightbulb main-icon-without-slide icon-png-container pd-lv4" style="font-size: 30px;"></i>
+                                    <div class="logo-container">
+                                        <img src="{% static 'img/MALLA.png' %}" alt="Icono cerrado" class="logo-image-sm">
+                                    </div>
                                 </span>
-                                <!-- Icono y texto para cuando el menú está abierto -->
+                                <!-- Para cuando el menú está abierto -->
                                 <span class="logo-lg">
-                                    <i class="fas fa-lightbulb main-icon-without-slide icon-png-container pd-lv4" style="font-size: 30px;"></i>
-                                    <span style="font-size: 25px; margin-left: 10px; color: #ffffff;">INVC</span>
+                                    <div class="logo-container">
+                                        <img src="{% static 'img/MALLA.png' %}" alt="Icono abierto" class="logo-image-lg">
+                                        <span class="logo-text">INNOVACIÓN</span>
+                                    </div>
                                 </span>
                             </a>
                         </div>
                         
-                                                
-    
                         <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
                             <i class="mdi mdi-menu"></i>
-                        </button>
-    
-                        <div class="d-none d-sm-block">
-                            <div class="dropdown dropdown-topbar pt-3 mt-1 d-inline-block">
-                                <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Create 
-                                    </a>
-        
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="{% url 'ideas:create' %}">Idea</a>
-                                    <a class="dropdown-item" href="#">Solución</a>
-                                    <a class="dropdown-item" href="{% url 'oportunidades:list' %}">Oportunidad</a>   
-                                </div>
-                            </div>
-                        </div>
+                        </button>   
                     </div>
-    
-                    <div class="d-flex">
-    
-                         <!-- App Search-->
-                         <form class="app-search d-none d-lg-block">
+            
+                    <div class="d-flex justify-content-end">  <!-- Agrupamos todo lo relacionado al lado derecho -->
+                        
+                        <!-- App Search-->
+                        <form class="app-search d-none d-lg-block">
                             <div class="position-relative">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <span class="fa fa-search"></span>
                             </div>
                         </form>
-    
+                
                         <div class="dropdown d-inline-block d-lg-none ml-2">
                             <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -94,7 +82,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                                 aria-labelledby="page-header-search-dropdown">
-                        
+                            
                                 <form class="p-3">
                                     <div class="form-group m-0">
                                         <div class="input-group">
@@ -107,119 +95,17 @@
                                 </form>
                             </div>
                         </div>
-    
-    
+            
                         <div class="dropdown d-none d-lg-inline-block">
                             <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
                                 <i class="mdi mdi-fullscreen font-size-24"></i>
                             </button>
                         </div>
-    
-                        <div class="dropdown d-inline-block ml-1">
-                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-bell"></i>
-                                <span class="badge badge-danger badge-pill">3 </span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
-                                aria-labelledby="page-header-notifications-dropdown">
-                                <div class="p-3">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h5 class="m-0"> Notifications (258) </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div data-simplebar style="max-height: 230px;">
-                                    <a href="" class="text-reset notification-item">
-                                        <div class="media">
-                                            <div class="avatar-xs mr-3">
-                                                <span class="avatar-title border-success rounded-circle ">
-                                                    <i class="mdi mdi-cart-outline"></i>
-                                                </span>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-1">Your order is placed</h6>
-                                                <div class="text-muted">
-                                                    <p class="mb-1">If several languages coalesce the grammar</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-    
-                                    <a href="" class="text-reset notification-item">
-                                        <div class="media">
-                                            <div class="avatar-xs mr-3">
-                                                <span class="avatar-title border-warning rounded-circle ">
-                                                    <i class="mdi mdi-message"></i>
-                                                </span>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-1">New Message received</h6>
-                                                <div class="text-muted">
-                                                    <p class="mb-1">You have 87 unread messages</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-    
-                                    <a href="" class="text-reset notification-item">
-                                        <div class="media">
-                                            <div class="avatar-xs mr-3">
-                                                <span class="avatar-title border-info rounded-circle ">
-                                                    <i class="mdi mdi-glass-cocktail"></i>
-                                                </span>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-1">Your item is shipped</h6>
-                                                <div class="text-muted">
-                                                    <p class="mb-1">It is a long established fact that a reader will</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-    
-                                    <a href="" class="text-reset notification-item">
-                                        <div class="media">
-                                            <div class="avatar-xs mr-3">
-                                                <span class="avatar-title border-primary rounded-circle ">
-                                                    <i class="mdi mdi-cart-outline"></i>
-                                                </span>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-1">Your order is placed</h6>
-                                                <div class="text-muted">
-                                                    <p class="mb-1">Dummy text of the printing and typesetting industry.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-    
-                                    <a href="" class="text-reset notification-item">
-                                        <div class="media">
-                                            <div class="avatar-xs mr-3">
-                                                <span class="avatar-title border-warning rounded-circle ">
-                                                    <i class="mdi mdi-message"></i>
-                                                </span>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-1">New Message received</h6>
-                                                <div class="text-muted">
-                                                    <p class="mb-1">You have 87 unread messages</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="p-2 border-top">
-                                    <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
-                                        View all
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                
-    
+                        <!-- Notificaciones -->
+                        
+            
+
+                        <!-- Perfil -->
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -228,19 +114,30 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle font-size-17 text-muted align-middle mr-1"></i> Profile</a>
+                                <a class="dropdown-item" href="{% url 'perfil:mi_perfil' %}">  
+                                    <i class="mdi mdi-account-circle font-size-17 text-muted align-middle mr-1"></i> Perfil
+                                </a>
+                                
                                 <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings font-size-17 text-muted align-middle mr-1"></i> Settings</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#"><i class="mdi mdi-power font-size-17 text-muted align-middle mr-1 text-danger"></i> Logout</a>
+                                
+                                <!-- Botón de cerrar sesión -->
+                                <form action="{% url 'login:logout' %}" method="post" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="dropdown-item text-danger" style="background: none; border: none; padding: 0;">
+                                        <i class="mdi mdi-power font-size-17 text-muted align-middle mr-1 text-danger"></i> Salir
+                                    </button>
+                                </form>
                             </div>
                         </div>
-    
+            
+                        <!-- Configuraciones -->
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
                                 <i class="mdi mdi-spin mdi-settings"></i>
                             </button>
                         </div>
-                
+                    
                     </div>
                 </div>
             </header>
@@ -257,9 +154,16 @@
                             <li class="menu-title">Main</li>
     
                             <li id="dashboard_li">
-                                <a href="{% url 'authentication:app'%}" class="waves-effect" id="dashboard_anchor">
+                                <a href="{% url 'authentication:dashboard'%}" class="waves-effect" id="dashboard_anchor">
                                     <i class="mdi mdi-view-dashboard"></i>
                                     <span>Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li id="proyectos_li">
+                                <a href="{% url 'authentication:listar_proyectos' %}" class="waves-effect" id="proyectos_anchor">
+                                    <i class="mdi mdi-briefcase"></i>
+                                    <span>Proyectos</span>
                                 </a>
                             </li>
 
@@ -289,7 +193,7 @@
                                     <span>Modulo Oportunidades</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="#">Documentos</a></li>
+                                    <li><a href="{% url 'oportunidades:create' %}">Crear Oportunidad</a></li>
                                     <li><a href="#">Tabla de selección de fuentes</a></li>
                                     <li><a href="#">Formulario de resgistro de nuevo experto</a></li>
 
@@ -328,7 +232,7 @@
                                     <span> Authentication </span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a target="_blank" href="pages-login.html">Login</a></li>
+                                    <li><a target="_blank" href="{% url 'perfil:mi_perfil' %}">Login</a></li>
                                     <li><a  target="_blank" href="pages-register.html">Register</a></li>
                                     <li><a  target="_blank" href="pages-recoverpw.html">Recover Password</a></li>
                                 </ul>
@@ -343,18 +247,12 @@
     
             <!-- ============================================================== -->
             <!-- Start right Content here -->
+
+
             <!-- ============================================================== -->
             <div class="main-content">
                 <div class="page-content">
-                        <footer class="footer">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        © 2024 Universidad San Buenaventura Medellín  <span class="d-none d-sm-inline-block"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </footer>
+                        
                     </div>
                     <!-- end main content-->
     
