@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+<!-- DataTables -->
+<link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+{% endblock head %}
+
+{% block content %}
+<!-- start page title -->
+<div class="row">
+    <div class="col-sm-6">
+        <div class="page-title-box">
+            <h4>Lista de oportunidades</h4>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">
+                    Ideas
+                    <a class='float-right btn btn-success' href="{% url 'oportunidades:create' %}">Crear Nueva oportunidad</a>
+                </h4>
+
+                <div class="table-responsive">
+                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Descripción</th>
+                                <th>Palabras clave</th>
+                                <th>Tipo de Innovación</th>
+                                <th>Fecha de Creación</th>
+                                <th>Creado por</th>
+                                <th class="text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for oportunidad in oportunidades %}
+                                <tr>
+                                    <td><a href="{% url 'oportunidades:detail' oportunidad.id %}">{{ idea.title }}</a></td>
+                                    <td>{{ oportunidad.description }}</td>
+                                    <td>{{ oportunidad.key_words }}</td>
+                                    <td>{{ oportunidad.innovation_type }}</td>
+                                    <td>{{ oportunidad.created_at }}</td>
+                                    <td>{{ oportunidad.created_by }}</td>
+                                    <td class="text-right">
+                                        <a href="{% url 'oportunidades:update' oportunidad.id %}" class="btn btn-warning btn-sm">Editar</a>
+                                        <a href="{% url 'oportunidades:delete' oportunidad.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+<!-- Datatable init js -->
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    });
+</script>
+{% endblock scripts %}

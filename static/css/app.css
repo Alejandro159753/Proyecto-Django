@@ -256,16 +256,18 @@ body[data-layout="horizontal"] .page-title-content {
 
 .footer {
   background-color: #fafafa;
-  bottom: 0;
   padding: 20px calc(24px / 2);
-  position: absolute;
+  position: relative; /* Cambiado de absolute a relative */
   text-align: center;
-  right: 0;
   color: #5b626b;
-  left: 240px;
+  width: 100%; /* Asegúrate de que ocupa todo el ancho */
   height: 60px;
+  left: 0; /* Asegúrate de que esté alineado a la izquierda */
+  bottom: 0; /* Esto no es necesario si es relative, pero puedes dejarlo */
   -webkit-box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, 0.05);
-          box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, 0.05); }
+          box-shadow: 0px -1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
 
 @media (max-width: 992px) {
   .footer {

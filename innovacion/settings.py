@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'authentication',
     'ideas',
+    'oportunidades',
+    'perfil',
     
     
 ]
@@ -75,7 +77,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'innovacion',
         'USER': 'postgres',
-        'PASSWORD': 'pg2105',
+        'PASSWORD': 'Alejandro2.0',
         'HOST': 'localhost',
         'PORT': '5432',
     }

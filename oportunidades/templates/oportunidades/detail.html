@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+ 
+{% block content %}
+<!-- start page title -->
+<div class="row">
+    <div class="col-sm-6">
+        <div class="page-title-box">
+            <h4>Ideas</h4>
+        </div>
+    </div>
+</div>
+ 
+<div class="row">
+    <div class="col-10">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">{{ ideas.title }}</h4>
+            </div>
+            <div class="card-body">
+ 
+                <p>
+                    <b>Fecha:</b> {{ idea.created_at }}<br/>
+                    <b>Responsable:</b> {{ idea.created_by }}<br/>
+                    <b>Area:</b> {{ idea.area }}<br/>
+                    <b>Descripción:</b> {{ idea.description }}<br/>
+                    
+                    {% if documents.file %}
+                        <b>Archivo:</b> <a href="/{{ idea.file }}" target="_blank">Descargar</a><br/>
+                    {% endif %}
+                </p>
+ 
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{% url 'ideas:list' %}"  class="btn btn-light">Regresar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end col -->
+</div>
+{% endblock content %}
